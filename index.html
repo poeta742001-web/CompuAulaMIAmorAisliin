@@ -133,23 +133,21 @@
         /* ---- Tema visual ---- */
         .tema-grid { display:grid; grid-template-columns:3fr 2fr; gap:32px; align-items:center; }
         
-        /* Modificado: Removido padding y centrado de texto para que la imagen ocupe todo */
         .visual-block { 
             position:relative; 
             height:220px; 
             background:var(--muted); 
             border-radius:12px; 
-            overflow:hidden; /* Necesario para que la imagen respete los bordes redondeados */
+            overflow:hidden;
             animation: pulse-glow 2s ease-in-out infinite; 
             border: 1px solid rgba(0,229,255,0.2);
-            display: flex; /* Asegura que la imagen se estire bien */
+            display: flex;
         }
         
-        /* Modificado: Estilos para la imagen del álbum */
         .album-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ajusta la imagen sin deformarla */
+            object-fit: cover;
             border-radius: 12px;
         }
 
@@ -178,6 +176,34 @@
         /* ---- Conclusion ---- */
         .conclusion-box { border-radius:12px; padding:32px; background:var(--muted); border-left:4px solid var(--neon-pink); text-align:center; box-shadow:var(--glow-pink); }
         .conclusion-box p { font-size:clamp(1rem,2.5vw,1.25rem); font-weight:600; font-style:italic; color:var(--text); line-height:1.7; margin:0; }
+
+        /* ---- Quiz Styles ---- */
+        .quiz-container { margin-top: 20px; }
+        .quiz-question { margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border); }
+        .quiz-question p { font-weight: 600; margin-bottom: 15px; color: var(--neon-yellow); }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-btn { 
+            background: var(--muted); 
+            border: 1px solid var(--border); 
+            color: var(--text); 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            text-align: left; 
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .quiz-btn:hover { border-color: var(--neon-blue); background: rgba(0,229,255,0.05); }
+        .quiz-btn.correct { background: #2e7d32; border-color: #4caf50; color: white; }
+        .quiz-btn.wrong { background: #c62828; border-color: #f44336; color: white; }
+        #quiz-result { 
+            margin-top: 20px; 
+            font-weight: 700; 
+            text-align: center; 
+            padding: 15px; 
+            border-radius: 8px;
+            display: none;
+        }
 
         /* ---- Footer ---- */
         footer { position:relative; z-index:10; border-top:1px solid rgba(255,255,255,0.06); padding:40px 24px; text-align:center; }
@@ -330,6 +356,44 @@
         <p class="body-text" style="margin-top:20px;text-align:center;">Para maximizar el aprendizaje, la investigación sugiere priorizar la música instrumental para el enfoque profundo y utilizar música energética solo para tareas mecánicas o para aumentar la motivación antes del estudio.</p>
     </div>
 
+    <div class="section-card reveal">
+        <div class="section-header">
+            <div class="section-icon icon-yellow">📝</div>
+            <h2>Desafío Sónico: Mini Quiz</h2>
+        </div>
+        <p class="body-text">Pon a prueba lo que has aprendido en esta investigación digital.</p>
+        
+        <div class="quiz-container">
+            <div class="quiz-question">
+                <p>1. ¿Qué tipo de música se recomienda para tareas que requieren leer o escribir?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer(this, false)">Música Pop con letra</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, true)">Música Instrumental (Lo-fi / Clásica)</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, false)">Rock Pesado</button>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>2. Según la investigación, ¿quiénes suelen rendir mejor con música de fondo?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer(this, false)">Estudiantes introvertidos</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, true)">Estudiantes extrovertidos</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, false)">Nadie, la música siempre distrae</button>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <p>3. ¿Qué sucede con la música con letra durante el estudio complejo?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer(this, true)">Provoca pérdida de retención (Cuello de botella)</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, false)">Ayuda a memorizar vocabulario</button>
+                    <button class="quiz-btn" onclick="checkAnswer(this, false)">No tiene ningún efecto notable</button>
+                </div>
+            </div>
+        </div>
+        <div id="quiz-result"></div>
+    </div>
+
 </div>
 
 <footer>
@@ -339,10 +403,46 @@
         <div class="eq-bar" style="animation-delay:0.3s"></div>
         <div class="eq-bar" style="animation-delay:0.45s"></div>
         <div class="eq-bar" style="animation-delay:0.6s"></div>
-    
+    </div>
+    <p>© 2024 Estudio Sónico - Proyecto de Investigación Académica</p>
 </footer>
 
 <script>
+// Lógica del Quiz
+let correctCount = 0;
+const totalQuestions = 3;
+
+function checkAnswer(btn, isCorrect) {
+    // Evitar múltiples clics en la misma pregunta
+    const container = btn.parentElement;
+    const buttons = container.querySelectorAll('.quiz-btn');
+    buttons.forEach(b => b.disabled = true);
+
+    if (isCorrect) {
+        btn.classList.add('correct');
+        correctCount++;
+    } else {
+        btn.classList.add('wrong');
+        // Mostrar la correcta
+        buttons.forEach(b => {
+            if (b.innerText.includes('Instrumental') || b.innerText.includes('extrovertidos') || b.innerText.includes('Cuello de botella')) {
+                // b.classList.add('correct'); // Opcional: mostrar cual era la correcta
+            }
+        });
+    }
+
+    const resultDiv = document.getElementById('quiz-result');
+    const answeredCount = document.querySelectorAll('.quiz-btn.correct, .quiz-btn.wrong').length;
+
+    if (answeredCount === totalQuestions) {
+        resultDiv.style.display = 'block';
+        resultDiv.style.background = 'rgba(0,229,255,0.1)';
+        resultDiv.style.border = '1px solid var(--neon-blue)';
+        resultDiv.innerHTML = `¡Quiz completado! Puntuación: ${correctCount} de ${totalQuestions}`;
+    }
+}
+
+// Código original de efectos visuales
 const notes = ["\u266A","\u266B","\u266C","\u2669","\uD834\uDD60"];
 for(let i=0;i<18;i++){
     const span = document.createElement("span");
