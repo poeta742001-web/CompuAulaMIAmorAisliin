@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-    #ivanna esta pendeja, bien stupida, Toda cojida por los profes, con razon saca 10
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +32,7 @@
 
         h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
 
-        /* ---- Floating Notes ---- */
+        
         .music-note {
             position: fixed;
             pointer-events: none;
@@ -48,7 +47,7 @@
             100% { transform: translateY(-10vh) rotate(360deg) scale(0.4); opacity:0; }
         }
 
-        /* ---- Equalizer ---- */
+       
         .equalizer { display:flex; align-items:flex-end; gap:3px; height:40px; justify-content:center; }
         .eq-bar { width:6px; border-radius:3px; animation: eq-bar 1.2s ease-in-out infinite; }
         @keyframes eq-bar {
@@ -60,7 +59,7 @@
         .eq-pink .eq-bar { background: var(--neon-pink); }
         .eq-blue .eq-bar { background: var(--neon-blue); }
 
-        /* ---- Waveform ---- */
+        
         .waveform { display:flex; align-items:center; gap:2px; height:48px; justify-content:center; opacity:0.3; }
         .wave-bar { width:3px; border-radius:3px; background:var(--neon-pink); height:100%; transform-origin:center; animation: wave 1.5s ease-in-out infinite; }
         @keyframes wave {
@@ -68,7 +67,7 @@
             50% { transform: scaleY(1); }
         }
 
-        /* ---- Glowing BG circles ---- */
+       
         .glow-circle {
             position:absolute; border-radius:50%; opacity:0.06; pointer-events:none;
         }
@@ -76,7 +75,7 @@
         .glow-blue { background: radial-gradient(circle, var(--neon-blue), transparent 70%); width:500px; height:500px; bottom:-10%; left:-10%; animation: glow-rotate 25s linear infinite reverse; }
         @keyframes glow-rotate { from{transform:scale(1) rotate(0deg);} 50%{transform:scale(1.2) rotate(180deg);} to{transform:scale(1) rotate(360deg);} }
 
-        /* ---- Hero ---- */
+        
         .hero {
             position:relative; min-height:80vh; display:flex; flex-direction:column;
             justify-content:center; align-items:center; text-align:center; padding:40px 24px; overflow:hidden;
@@ -93,10 +92,10 @@
         .hero-wave { margin-top:32px; animation: fadeIn 1s 0.9s both; }
         .hero-line { position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,64,129,0.5),transparent); }
 
-        /* ---- Container ---- */
+        
         .container { max-width:1100px; margin:0 auto; padding:32px 24px; position:relative; z-index:10; }
 
-        /* ---- Team Card ---- */
+       
         .team-card {
             position:relative; border-radius:16px; padding:32px; margin-bottom:48px;
             background:rgba(30,30,30,0.8); border:1px solid rgba(255,255,255,0.08);
@@ -113,7 +112,6 @@
         .group-label { font-size:0.7rem; color:var(--neon-blue); letter-spacing:0.3em; text-transform:uppercase; }
         .group-value { font-family:'Montserrat',sans-serif; font-size:2.5rem; font-weight:900; margin-top:4px; }
 
-        /* ---- Section Card ---- */
         .section-card {
             border-radius:16px; padding:32px 40px; margin-bottom:40px;
             background:rgba(30,30,30,0.8); border:1px solid rgba(255,255,255,0.08);
@@ -131,7 +129,7 @@
         .body-text { color:var(--text-body); font-size:1rem; margin-bottom:12px; max-width:800px; }
         .body-text strong { color:var(--text); font-weight:600; }
 
-        /* ---- Tema visual ---- */
+        
         .tema-grid { display:grid; grid-template-columns:3fr 2fr; gap:32px; align-items:center; }
         
         .visual-block { 
@@ -155,7 +153,7 @@
         @keyframes pulse-glow { 0%,100%{box-shadow:0 0 15px rgba(0,229,255,0.2);} 50%{box-shadow:0 0 35px rgba(0,229,255,0.4);} }
         .on-air { position:absolute; top:10px; right:10px; background:#d32f2f; color:#fff; font-size:0.65rem; font-weight:700; padding:3px 8px; border-radius:4px; z-index:1; }
 
-        /* ---- Objectives Grid ---- */
+        
         .obj-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
         .obj-card { background:var(--muted); border-radius:12px; padding:24px; border:1px solid var(--border); text-align:center; transition:border-color 0.3s, transform 0.3s; }
         .obj-card:hover { border-color:rgba(255,234,0,0.5); transform:translateY(-4px); }
@@ -163,22 +161,21 @@
         .obj-card h4 { font-weight:700; margin-bottom:8px; }
         .obj-card p { font-size:0.85rem; color:var(--text-body); margin:0; }
 
-        /* ---- Findings list ---- */
         .findings li { position:relative; padding-left:32px; margin-bottom:16px; color:var(--text-body); }
         .findings li::before { content:"\266A"; position:absolute; left:0; top:2px; color:var(--neon-pink); font-size:1.1rem; }
         .findings li strong { color:var(--text); }
 
-        /* ---- Badges ---- */
+       
         .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
         .badge { padding:6px 16px; border-radius:20px; font-size:0.8rem; font-weight:600; }
         .badge-blue { background:rgba(0,229,255,0.1); color:var(--neon-blue); border:1px solid rgba(0,229,255,0.3); }
         .badge-pink { background:rgba(255,64,129,0.1); color:var(--neon-pink); border:1px solid rgba(255,64,129,0.3); }
 
-        /* ---- Conclusion ---- */
+        
         .conclusion-box { border-radius:12px; padding:32px; background:var(--muted); border-left:4px solid var(--neon-pink); text-align:center; box-shadow:var(--glow-pink); }
         .conclusion-box p { font-size:clamp(1rem,2.5vw,1.25rem); font-weight:600; font-style:italic; color:var(--text); line-height:1.7; margin:0; }
 
-        /* ---- Quiz Styles ---- */
+        
         .quiz-container { margin-top: 20px; }
         .quiz-question { margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border); }
         .quiz-question p { font-weight: 600; margin-bottom: 15px; color: var(--neon-yellow); }
@@ -206,15 +203,13 @@
             display: none;
         }
 
-        /* ---- Footer ---- */
+    
         footer { position:relative; z-index:10; border-top:1px solid rgba(255,255,255,0.06); padding:40px 24px; text-align:center; }
         footer p { font-size:0.85rem; color:var(--text-body); }
 
-        /* ---- Scroll Reveal ---- */
         .reveal { opacity:0; transform:translateY(50px); transition:opacity 0.6s ease-out, transform 0.6s ease-out; }
         .reveal.visible { opacity:1; transform:translateY(0); }
 
-        /* ---- Responsive ---- */
         @media(max-width:768px) {
             .tema-grid { grid-template-columns:1fr; }
             .group-box { border-left:none; border-top:1px solid var(--border); padding:16px 0 0; }
